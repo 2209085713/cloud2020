@@ -1,2 +1,5 @@
-top\bypen\springcloud\entities\Payment.class
+top\bypen\springcloud\services\impl\PaymentServiceImpl.class
+top\bypen\springcloud\dao\PaymentDao.class
+top\bypen\springcloud\controller\PaymentController.class
+top\bypen\springcloud\services\PaymentService.class
 top\bypen\springcloud\Payment8001Main.class

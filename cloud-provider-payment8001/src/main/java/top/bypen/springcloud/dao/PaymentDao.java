@@ -1,7 +1,8 @@
 package top.bypen.springcloud.dao;
 
-import top.bypen.springcloud.entities.Payment;
 import org.apache.ibatis.annotations.Mapper;
+import top.byen.springcloud.entities.Payment;
+
 
 /**
  * @Author: LiangJinpeng

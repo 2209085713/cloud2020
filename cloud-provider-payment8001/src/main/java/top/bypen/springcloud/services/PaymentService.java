@@ -1,7 +1,7 @@
 package top.bypen.springcloud.services;
 
-import org.springframework.stereotype.Service;
-import top.bypen.springcloud.entities.Payment;
+
+import top.byen.springcloud.entities.Payment;
 
 /**
  * @Author: LiangJinpeng
