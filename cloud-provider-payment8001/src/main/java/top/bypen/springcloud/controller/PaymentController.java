@@ -3,10 +3,14 @@ package top.bypen.springcloud.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 import top.byen.springcloud.entities.CommonResult;
 import top.byen.springcloud.entities.Payment;
 import top.bypen.springcloud.services.PaymentService;
+
+import java.util.List;
 
 /**
  * @Author: LiangJinpeng
@@ -19,6 +23,12 @@ public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
+
+    /**
+     * 服务发现 获取服务信息
+     */
+    @Autowired
+    private DiscoveryClient discoveryClient;
 
     @Value("${server.port}")
     private String serverPort;
@@ -43,5 +53,19 @@ public class PaymentController {
         }else {
             return new CommonResult(444,"查询失败~"+serverPort,null);
         }
+    }
+
+    @GetMapping("/discovery")
+    public Object discovery() {
+        List<String> services = discoveryClient.getServices();
+        for (String service: services) {
+            log.info("******element****:"+service);
+        }
+        //一个微服务下的全部实例
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PROVIDER-SERVICE");
+        for (ServiceInstance instance : instances){
+            log.info(instance.getHost() + "\t" + instance.getServiceId() + "\t" + instance.getPort() + "\t" + instance.getUri());
+        }
+        return this.discoveryClient;
     }
 }
